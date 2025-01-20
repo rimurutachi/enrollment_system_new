@@ -1,7 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const StudentPageDropdownMenu = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove the authentication token
+    localStorage.removeItem("token");
+
+    // Show success toast notification
+    toast.success("Logged out successfully!");
+
+    // Redirect to the login page
+    navigate("/StudentPageLogin");
+
+    // Prevent the user from navigating back to protected pages
+    setTimeout(() => {
+      window.location.reload(); // Force a reload to reset the state
+    }, 0);
+  };  
+
   return (
     <div className="dropdown">
       <button
@@ -13,19 +32,25 @@ const StudentPageDropdownMenu = () => {
       </button>
       <ul className="dropdown-menu dropdown-menu-end">
         <li>
-          <Link className="dropdown-item" to="/StudentPageProfile">
+          <button
+            className="dropdown-item"
+            onClick={() => navigate("/StudentPageProfile")}
+          >
             Profile
-          </Link>
+          </button>
         </li>
         <li>
-          <Link className="dropdown-item" to="/StudentPageChangePass">
+          <button
+            className="dropdown-item"
+            onClick={() => navigate("/StudentPageChangePass")}
+          >
             Change Password
-          </Link>
+          </button>
         </li>
         <li>
-          <Link className="dropdown-item" to="/LoginPage">
+          <button className="dropdown-item" onClick={handleLogout}>
             Sign out
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

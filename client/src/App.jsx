@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/Login/LoginPage";
 import StudentPageLogin from "./pages/Login/StudentPageLogin";
+import AdminPageLogin from "./pages/Login/AdminPageLogin.jsx";
 import FacultyPageLogin from "./pages/Login/FacultyPageLogin";
 import RegistrationForm from "./pages/Admission/RegistrationForm";
 import ApplicantProfile from "./pages/Admission/ApplicantProfile";
@@ -19,9 +20,20 @@ import StudentPageProfile from "./pages/Student/StudentPageProfile.jsx";
 import StudentPageChangePass from "./pages/Student/StudentPageChangePass.jsx";
 import StudentPageInboxDetail from "./pages/Student/StudentPageInboxDetail.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
-import StudentMasterlist from "./pages/Admin/StudentMasterlist.jsx";
-import FacultyMasterlist from "./pages/Admin/FacultyMasterlist.jsx";
+import AdminStudentMasterlist from "./pages/Admin/AdminStudentMasterlist.jsx";
+import AdminFacultyMasterlist from "./pages/Admin/AdminFacultyMasterlist.jsx";
 import AdminAnnouncements from "./pages/Admin/AdminAnnouncements.jsx";
+import AdminAdmission from "./pages/Admin/AdminAdmission.jsx";
+import AdminCreateFaculty from "./pages/Admin/AdminCreateFaculty.jsx";
+import AdminCreateStudent from "./pages/Admin/AdminCreateStudent.jsx";
+import AdminFacultySchedule from "./pages/Admin/AdminFacultySchedule.jsx";
+import AdminStudentSchedule from "./pages/Admin/AdminStudentSchedule.jsx";
+import AdminUploadedDocuments from "./pages/Admin/AdminUploadedDocuments.jsx";
+import FacultyDashboard from "./pages/Faculty/FacultyDashboard.jsx";
+import FacultyMasterlist from "./pages/Faculty/FacultyMasterlist.jsx";
+import FacultyPageSchedule from "./pages/Faculty/FacultyPageSchedule.jsx";
+import FacultyPageAdvising from "./pages/Faculty/FacultyPageAdvising.jsx";
+
 
 import axios from "axios";
 import { Toaster } from "react-hot-toast";
@@ -38,6 +50,7 @@ function App() {
         <Route path="/LandingPage" element={<LandingPage />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/StudentPageLogin" element={<StudentPageLogin />} />
+        <Route path="/AdminPageLogin" element={<AdminPageLogin/>} />
         <Route path="/FacultyPageLogin" element={<FacultyPageLogin />} />
         <Route path="/RegistrationForm" element={<RegistrationForm />} />
         <Route path="/ApplicantProfile" element={<ApplicantProfile />} />
@@ -53,10 +66,20 @@ function App() {
         <Route path="/StudentPageProfile" element={<StudentPageProfile />} />
         <Route path="/StudentPageChangePass" element={<StudentPageChangePass />} />
         <Route path="/StudentPageInboxDetail" element={<StudentPageInboxDetail />} />
-        <Route path="/AdminDashBoard" element={<AdminDashboard />} />
-        <Route path="/StudentMasterlist" element={<StudentMasterlist />} />
-        <Route path="/FacultyMasterlist" element={<FacultyMasterlist />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/AdminStudentMasterlist" element={<AdminStudentMasterlist />} />
+        <Route path="/AdminCreateStudent" element={<AdminCreateStudent />} />
+        <Route path="/AdminAdmission" element={<AdminAdmission />} /> 
+        <Route path="/AdminStudentSchedule" element={<AdminStudentSchedule />} />
+        <Route path="/AdminFacultyMasterlist" element={<AdminFacultyMasterlist />} />
+        <Route path="/AdminCreateFaculty" element={<AdminCreateFaculty />} />
+        <Route path="/AdminFacultySchedule" element={<AdminFacultySchedule />} />
         <Route path="/AdminAnnouncements" element={<AdminAnnouncements />} />
+        <Route path="/AdminUploadedDocuments" element={<AdminUploadedDocuments/>} />
+        <Route path="/FacultyDashboard" element={<FacultyDashboard/>} />
+        <Route path="/FacultyMasterlist" element={<FacultyMasterlist/>} />
+        <Route path="/FacultyPageSchedule" element={<FacultyPageSchedule/>} />
+        <Route path="/FacultyPageAdvising" element={<FacultyPageAdvising/>} />
       </Routes>
     </Router>
   );

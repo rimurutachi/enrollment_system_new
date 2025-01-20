@@ -1,3 +1,8 @@
+/* styles.css */
+h1 {
+  color: #004d00;
+}
+
 .sidebar {
   width: 250px; /* Sidebar width */
   background-color: #1e5128; /* Darker green color */
@@ -56,4 +61,26 @@
 .icon {
   margin-right: 10px;
   font-size: 20px;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px; /* Optional for indentation */
+}
+
+.subNavLink {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-decoration: none;
+  margin: 5px 0 5px 20px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.subNavLink:hover,
+.subNavLink.active {
+  color: #4caf50;
+  font-weight: bold;
 }

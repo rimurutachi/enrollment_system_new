@@ -24,6 +24,12 @@ const LoginPage = () => {
             Faculty Login
           </button>
           <button
+            className={`${styles.button} ${styles.faculty}`}
+            onClick={() => handleNavigation("/AdminPageLogin")}
+          >
+            Admin Login
+          </button>
+          <button
             className={`${styles.button} ${styles.student}`}
             onClick={() => handleNavigation("/StudentPageLogin")}
           >

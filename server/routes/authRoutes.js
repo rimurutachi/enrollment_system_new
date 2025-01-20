@@ -8,6 +8,18 @@ const { Family } = require("../controllers/authFamily.js");
 const { Education } = require("../controllers/authEducation.js");
 const { Requirement, upload } = require("../controllers/authRequirement.js");
 const { Schedule } = require("../controllers/authSchedule.js");
+const {
+  createAnnouncement,
+  getAnnouncements,
+} = require("../controllers/authAnnouncement.js");
+const {
+  createStudent,
+  loginStudent,
+} = require("../controllers/authCreateStudent.js");
+const {
+  registerFaculty,
+  loginFaculty,
+} = require("../controllers/authCreateFaculty.js");
 
 //Middleware
 router.use(
@@ -35,5 +47,11 @@ router.post(
   Requirement
 );
 router.post("/Schedule", Schedule);
+router.post("/Create", createAnnouncement);
+router.get("/Announcement", getAnnouncements);
+router.post("/Student", createStudent); // Create student
+router.post("/Login", loginStudent); // Student login
+router.post("/Faculty", registerFaculty);
+router.post("/FacultyLogin", loginFaculty);
 
 module.exports = router;

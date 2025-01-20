@@ -1,0 +1,19 @@
+.uploadedDocumentsContainer {
+  margin-top: 20px;
+}
+
+.cardHeader {
+  background-color: #4caf50;
+  color: white;
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.table {
+  margin-top: 10px;
+}

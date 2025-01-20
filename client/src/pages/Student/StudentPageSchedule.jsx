@@ -33,7 +33,7 @@ const StudentPageSchedule = () => {
         <div className="card-body">
           {/* Header Section inside the card */}
           <div className="mb-4">
-            <h5 className={styles.header}>LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)</h5>
+            <h5 className={styles.header}>LOQUE, MARK IVANBERN S. (20222-61615-MN-0)</h5>
           </div>
 
           {/* Table Section */}

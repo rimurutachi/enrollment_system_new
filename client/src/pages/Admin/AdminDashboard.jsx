@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "../../styles/AdminDashboard.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar from "../../components/Admin/Sidebar.jsx";
 
 const AdminDashboard = () => {
   return (
     <div className={`container ${styles.homeContainer}`}>
+      <Sidebar />
       <div className="row">
         <div className="col-md-6">
           <div className={`card text-center ${styles.customCard}`}>

@@ -1,24 +1,45 @@
 import React, { useState } from "react";
 import styles from "../../styles/AdminAnnouncements.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import Sidebar from "../../components/Admin/Sidebar.jsx";
 
 const AdminAnnouncements = () => {
   const [recipient, setRecipient] = useState("");
+  const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e.preventDefault();
-    if (!recipient || !message) {
-      alert("Please select a recipient and enter a message.");
+    if (!recipient || !title || !message) {
+      toast.error("Please complete all fields.");
       return;
     }
-    alert(`Message sent to: ${recipient}\nMessage: ${message}`);
-    setRecipient("");
-    setMessage("");
+
+    try {
+      const response = await axios.post("/Create", {
+        title,
+        content: message,
+        createdBy: "Admin", // Replace with actual admin info if needed
+        recipient,
+      });
+
+      if (response.status === 201) {
+        toast.success("Announcement sent successfully.");
+        setRecipient("");
+        setTitle("");
+        setMessage("");
+      }
+    } catch (error) {
+      console.error("Error sending announcement:", error);
+      toast.error("An error occurred while sending the announcement.");
+    }
   };
 
   return (
     <div className={`container ${styles.announcementContainer}`}>
+      <Sidebar />
       <div className={`card shadow-sm ${styles.customCard}`}>
         <div className={`card-header ${styles.cardHeader}`}>
           <h5 className="mb-0">Send Announcement</h5>
@@ -42,6 +63,19 @@ const AdminAnnouncements = () => {
                 <option value="Faculty">Faculty</option>
                 <option value="Both">Both</option>
               </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="title" className="form-label">
+                Title
+              </label>
+              <input
+                id="title"
+                type="text"
+                className={`form-control ${styles.customInput}`}
+                placeholder="Enter announcement title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="message" className="form-label">

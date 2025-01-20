@@ -20,14 +20,11 @@ function LandingPage() {
 
   const handleAdmissionClick = () => {
     navigate("/RegistrationForm");
-  }
+  };
 
   const majors = [
-    { name: "Creative Arts", icon: "bi bi-brush" },
-    { name: "Health Sciences and Medical Studies", icon: "bi-heart" },
     { name: "Information Technology", icon: "bi-laptop" },
-    { name: "Language and Linguistics", icon: "bi-translate" },
-    { name: "Social Sciences", icon: "bi-people" },
+    { name: "Computer Science", icon: "bi-people" },
   ];
 
   return (
@@ -88,7 +85,7 @@ function LandingPage() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#profile">
+                  <a className="nav-link" href="#information">
                     About
                   </a>
                 </li>
@@ -104,11 +101,7 @@ function LandingPage() {
                     School Portal
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#information">
-                    Information
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <a className="nav-link" href="#programs">
                     School Programs
@@ -141,11 +134,12 @@ function LandingPage() {
         <section className={`${styles.infoCards} container py-5`}>
           <div className="row text-center">
             <div className="col-md-3 mb-4">
-              <div className={`${styles.card} p-3 shadow-sm`}
-              onClick={(e) => {
-                e.preventDefault(); // Prevent default anchor behavior
-                handleAdmissionClick(); // Redirect to LoginPage
-              }}
+              <div
+                className={`${styles.card} p-3 shadow-sm`}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent default anchor behavior
+                  handleAdmissionClick(); // Redirect to LoginPage
+                }}
               >
                 <i
                   className={`${styles.cardIcon} fas fa-university fa-3x mb-3`}
@@ -179,18 +173,26 @@ function LandingPage() {
         </section>
 
         {/* Video Section */}
-        <section className={`${styles.videoSection} py-5`}>
+        <section id="information" className={`${styles.videoSection} py-5`}>
           <div className="container text-center">
             <div className={`${styles.videoPlaceholder} mb-4`}>
-              <i className="fas fa-play fa-2x"></i>
+              <video
+                width="700"
+                height="400"
+                controls
+                className={`${styles.videoPlayer}`}
+              >
+                <source src="/cvsuvid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div className="row">
               <div className="col-md-3">
-                <p className={`${styles.statNumber} text-success`}>8</p>
+                <p className={`${styles.statNumber} text-success`}>2</p>
                 <p className="text-muted">Total Majors</p>
               </div>
               <div className="col-md-3">
-                <p className={`${styles.statNumber} text-success`}>100</p>
+                <p className={`${styles.statNumber} text-success`}>50</p>
                 <p className="text-muted">Total Faculty</p>
               </div>
               <div className="col-md-3">
@@ -198,7 +200,7 @@ function LandingPage() {
                 <p className="text-muted">Total Students</p>
               </div>
               <div className="col-md-3">
-                <p className={`${styles.statNumber} text-success`}>35</p>
+                <p className={`${styles.statNumber} text-success`}>10</p>
                 <p className="text-muted">Extracurricular</p>
               </div>
             </div>
@@ -211,21 +213,11 @@ function LandingPage() {
             <div className="col-lg-6 col-md-12 text-center text-lg-start">
               <h2 className="mb-3">Discover Our School</h2>
               <p className="text-muted">
-                Tellus in metus vulputate eu scelerisque felis imperdiet proin.
-                Adipiscing diam donec adipiscing tristique risus nec feugiat.
-                Nascetur ridiculus mus mauris vitae ultricies leo.
+                Explore the vibrant community of CvSU Bacoor Campus, where
+                academic excellence meets innovation. Discover a campus
+                dedicated to shaping future-ready professionals through quality
+                education, research, and community-driven initiatives.
               </p>
-              <div className="mt-4">
-                <strong>Mrs Joanna McQuaid</strong>
-                <br />
-                Kepala Sekolah
-              </div>
-              <img
-                src="signature.png"
-                alt="Signature"
-                className="d-block mt-3 mx-auto mx-lg-0"
-                style={{ maxWidth: "150px" }}
-              />
             </div>
 
             {/* Right Side: Green Background */}
@@ -241,7 +233,7 @@ function LandingPage() {
                   <i className="fas fa-book"></i>
                 </div>
                 <img
-                  src="placeholder.png"
+                  src="/cvsucover.jpg"
                   alt="School Content"
                   className={styles.placeholderImage}
                 />
@@ -254,9 +246,8 @@ function LandingPage() {
           <div className="container">
             <h2 className="text-center">Why Choose Us</h2>
             <p className="text-center">
-              Tellus in metus vulputate eu scelerisque felis imperdiet proin.
-              Adipiscing diam donec adipiscing tristique risus nec feugiat.
-              Nascetur ridiculus mus mauris vitae ultricies leo.
+              Experience excellence, innovation, and holistic development at
+              CvSU Bacoor Campus, where futures are shaped for global success.
             </p>
             <div className={styles.whyChooseGrid}>
               <div className={styles.card}>
@@ -297,6 +288,7 @@ function LandingPage() {
           </div>
         </section>
         <section
+          id="programs"
           className={`${styles.section} ${styles.specializationSection}`}
         >
           <div className="container text-center py-5">
@@ -307,11 +299,7 @@ function LandingPage() {
               professionals. These specialized fields of study allow students to
               delve deeply into specific subjects, acquiring in-depth knowledge.
             </p>
-            <button
-              className={`${styles.viewAllButton} btn btn-outline-success mb-4`}
-            >
-              View All
-            </button>
+
             <div className="row">
               {majors.map((major, index) => (
                 <div

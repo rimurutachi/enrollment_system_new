@@ -1,0 +1,145 @@
+/* General */
+.container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #007f00;
+  margin-bottom: 20px;
+}
+
+/* Sidebar */
+.leftMenu {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.menuItem {
+  display: block;
+  padding: 10px 15px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+.menuItem:hover {
+  background-color: #f8f9fa;
+  text-decoration: none;
+}
+
+/* Main Card */
+.mainCard {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.memoSection {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.memoIcon {
+  font-size: 2rem;
+  color: #007f00;
+  margin-right: 15px;
+}
+
+.memoDetails {
+  flex-grow: 1;
+}
+
+.memoLink {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  display: block;
+}
+
+.memoLink:hover {
+  text-decoration: underline;
+}
+
+.memoUpdate {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Inbox Section */
+.inboxSection {
+  margin-top: 20px;
+}
+
+.inboxTable {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.inboxTable th {
+  background-color: #f8f9fa;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.inboxMessage {
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.inboxMessage:hover {
+  background-color: #f1f1f1;
+}
+
+/* Announcements */
+.announcementCard {
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.announcementHeader {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #007f00;
+  margin-bottom: 15px;
+}
+
+.announcementList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.announcementItem {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.announcementItem:last-child {
+  border-bottom: none;
+}
+
+.announcementDate {
+  display: block;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.noAnnouncements {
+  color: #6c757d;
+  font-style: italic;
+}

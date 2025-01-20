@@ -80,7 +80,7 @@ const StudentPageAccounts = () => {
         {/* Header Section inside the card */}
         <div className="mb-4">
           <h4 className={styles.header}>
-            LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)
+            LOQUE, MARK IVANBERN S. (20222-61615-MN-0)
           </h4>
         </div>
     <div className={styles.tableContainer}>

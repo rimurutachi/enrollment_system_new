@@ -1,41 +1,71 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import styles from "../../styles/StudentLoginPage.module.css";
 import Header from "../../components/Login/Header.jsx";
-import styles from "../../styles/StudentLoginPage.module.css"; // Importing as a module
 
-const StudentPage = () => {
+const StudentPageLogin = () => {
+  const [credentials, setCredentials] = useState({
+    studentID: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  // Redirect to home page if the user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/StudentPageHome");
+    }
+  }, [navigate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/Login", credentials);
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        toast.success("Login successful!");
+        navigate("/StudentPageHome");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Invalid Student ID or Password.");
+    }
+  };
+
   return (
     <div className={styles.studentPage}>
-      {" "}
-      {/* Use styles from the module */}
-      {/* Left Section */}
       <div className={styles.left}>
         <Header />
       </div>
-      {/* Right Section */}
       <div className={styles.right}>
         <h2 className={styles.sectionTitle}>Student Login</h2>
         <div className={styles.loginForm}>
-          <form>
-            <div className={styles.formGroup}>
-              <label htmlFor="studentID">Student ID</label>
-              <input
-                type="text"
-                id="studentID"
-                name="studentID"
-                placeholder="Enter your student ID."
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password."
-                required
-              />
-            </div>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              label="Student ID"
+              name="studentID"
+              placeholder="Enter your student ID"
+              value={credentials.studentID}
+              onChange={handleChange}
+              required
+            />
+            <InputField
+              label="Password"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              value={credentials.password}
+              onChange={handleChange}
+              required
+            />
             <button type="submit" className={styles.loginButton}>
               Login
             </button>
@@ -46,4 +76,11 @@ const StudentPage = () => {
   );
 };
 
-export default StudentPage;
+const InputField = ({ label, name, type = "text", ...props }) => (
+  <div className={styles.formGroup}>
+    <label htmlFor={name}>{label}</label>
+    <input type={type} id={name} name={name} {...props} />
+  </div>
+);
+
+export default StudentPageLogin;

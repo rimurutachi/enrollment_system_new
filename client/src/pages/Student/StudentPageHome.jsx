@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/StudentPageHome.module.css"; // You can further customize these styles
 import StudentPageNavbar from "../../components/StudentPage/StudentPageNavbar.jsx";
+import axios from "axios";
 
 const StudentPageHome = () => {
-  const [messages, setMessages] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedMessage, setSelectedMessage] = useState(null);
+  const [announcements, setAnnouncements] = useState([]);
 
-  // Fetch messages from the backend on component mount
+  // Fetch announcements from the backend on component mount
   useEffect(() => {
-    const loadMessages = async () => {
-      const fetchedMessages = await fetchMessages();
-      setMessages(fetchedMessages || []);
+    const loadAnnouncements = async () => {
+      try {
+        const response = await axios.get("/Announcement", {
+          params: { recipient: "Students" }, // Pass recipient as query parameter
+        });
+        setAnnouncements(response.data || []);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
     };
-    loadMessages();
+    loadAnnouncements();
   }, []);
-
-  const handleMessageClick = (id) => {
-    const message = messages.find((msg) => msg.id === id);
-    setSelectedMessage(message);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedMessage(null);
-  };
 
   return (
     <div className={`container mt-4 ${styles.container}`}>
-        <StudentPageNavbar />
+      <StudentPageNavbar />
       {/* "Home" text added here above the name */}
       <div className="mb-4">
         <h2 className={styles.homeHeader}>Home</h2>
@@ -41,7 +35,7 @@ const StudentPageHome = () => {
           {/* Header Section inside the card */}
           <div className="mb-4">
             <h4 className={styles.header}>
-              LOQUE, MARK FUCKINGBERN (20222-61615-MN-0)
+              LOQUE, MARK IVANBERN S. (20222-61615-MN-0)
             </h4>
           </div>
 
@@ -52,7 +46,7 @@ const StudentPageHome = () => {
               <div className={`card ${styles.menuCard} shadow-sm`}>
                 <div className="card-body">
                   <a href="#" className={`d-block mb-2 ${styles.menuItem}`}>
-                    Inbox ({messages.length})
+                    Announcements ({announcements.length})
                   </a>
                   <a href="#" className={`d-block mb-2 ${styles.menuItem}`}>
                     Graduation Clearance
@@ -87,25 +81,29 @@ const StudentPageHome = () => {
                 </div>
               </div>
 
-              {/* Inbox Section */}
+              {/* Announcements Section */}
               <div className="card shadow-sm">
                 <div className="card-body">
-                  <h5 className="mb-3">Inbox</h5>
+                  <h5 className="mb-3">Announcements</h5>
                   <ul className="list-group">
-                    {messages.length === 0 ? (
-                      <p>No messages available</p>
+                    {announcements.length === 0 ? (
+                      <p>No announcements available</p>
                     ) : (
-                      messages.map((message) => (
+                      announcements.map((announcement) => (
                         <li
-                          key={message.id}
+                          key={announcement._id} // Use _id as key for MongoDB documents
                           className="list-group-item d-flex justify-content-between align-items-center"
-                          onClick={() => handleMessageClick(message.id)}
                         >
-                          <i className="bi bi-envelope-fill text-danger me-2"></i>
-                          {message.title}
-                          <button className="btn btn-outline-secondary btn-sm">
-                            <i className="bi bi-printer"></i>
-                          </button>
+                          <i className="bi bi-megaphone-fill text-primary me-2"></i>
+                          <div>
+                            <strong>{announcement.title}</strong>
+                            <p className="mb-0">{announcement.content}</p>
+                            <small className={styles.announcementDate}>
+                              {new Date(
+                                announcement.createdAt
+                              ).toLocaleString()}
+                            </small>
+                          </div>
                         </li>
                       ))
                     )}
@@ -116,39 +114,6 @@ const StudentPageHome = () => {
           </div>
         </div>
       </div>
-
-      {/* Modal for selected message */}
-      {showModal && selectedMessage && (
-        <div
-          className="modal show fade"
-          style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{selectedMessage.title}</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleCloseModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>{selectedMessage.content}</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

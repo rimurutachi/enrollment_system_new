@@ -1,0 +1,39 @@
+.createStudentContainer {
+    margin-top: 50px;
+    max-width: 800px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .cardHeader {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .headerTitle {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .label {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .submitButton {
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .submitButton:hover {
+    background-color: #45a049;
+  }
