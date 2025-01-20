@@ -1,44 +1,83 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ProgressHeader from "./ProgressHeader"; // Import ProgressHeader
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import EducationSection from "../Admission/EducationSection.jsx";
 
 const EducationalProfile = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(3); // Assuming this is step 2 in the form
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
 
+  const [formData, setFormData] = useState({
+    elementary: {
+      schoolName: "",
+      schoolAddress: "",
+      typeOfSchool: "",
+      yearGraduated: "",
+    },
+    juniorHighSchool: {
+      schoolName: "",
+      schoolAddress: "",
+      typeOfSchool: "",
+      yearGraduated: "",
+    },
+    seniorHighSchool: {
+      schoolName: "",
+      schoolAddress: "",
+      typeOfSchool: "",
+      strand: "",
+      yearGraduated: "",
+    },
+  });
+
+  const handleInputChange = (section, field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [section]: { ...prev[section], [field]: value },
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const educationData = {
-        elementary: {
-          schoolName: "",
-          schoolAddress: "",
-          schoolType: "",
-          yearGraduated: "",
-          
-        },
-        juniorHigh: {
-          schoolName: "",
-          schoolAddress: "",
-          schoolType: "",
-          track: "",
-          yearGraduated: "",
-        },
-        seniorHigh: {
-          schoolName: "",
-          schoolAddress: "",
-          schoolType: "",
-          courseProgram: "",
-          yearGraduated: "",
-        },
-      };
-
-      await axios.post("/educations", educationData);
-      // Optionally, handle success (e.g., show a success message)
+      const response = await axios.post("/Education", formData);
+      if (response.data.error) {
+        toast.error("Error submitting data.");
+      } else {
+        toast.success("Education submitted successfully!");
+        setFormData({
+          elementary: {
+            schoolName: "",
+            schoolAddress: "",
+            typeOfSchool: "",
+            yearGraduated: "",
+          },
+          juniorHighSchool: {
+            schoolName: "",
+            schoolAddress: "",
+            typeOfSchool: "",
+            yearGraduated: "",
+          },
+          seniorHighSchool: {
+            schoolName: "",
+            schoolAddress: "",
+            typeOfSchool: "",
+            strand: "",
+            yearGraduated: "",
+          },
+        });
+        goToNextPage();
+      }
     } catch (error) {
       console.error("Error submitting education data:", error);
-      // Handle the error (e.g., show an error message)
+      toast.error("An error occurred. Please try again.");
     }
+  };
+
+  const goToNextPage = () => {
+    setCurrentStep(3);
+    navigate("/UploadRequirements");
   };
 
   return (
@@ -46,121 +85,59 @@ const EducationalProfile = () => {
       className="containers"
       style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
     >
-      {/* ProgressHeader component */}
       <ProgressHeader
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
-      />{" "}
-      {/* ProgressHeader displayed at the top */}
-      {/* Card Container */}
-      {/* Card Container */}
-      <div
-        className="card shadow p-4"
-        style={{
-          borderRadius: "10px",
-          backgroundColor: "#ffffff",
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h1 className="mb-4">
-          <i className="bi bi-mortarboard-fill  "></i> Educational Attainment
-        </h1>
-        <hr className="divider" />
-        <form onSubmit={handleSubmit}>
-          {/* Elementary Section */}
-          <section className="mb-4">
-            <h5 className="text-uppercase">Elementary</h5>
-            <div className="row">
-              <div className="col-md-3">
-                <label className="form-label">School Last Attended:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">School Address:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Type of School:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Year Graduated:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-          </section>
+      />
+      <form onSubmit={handleSubmit}>
+        <div
+          className="card shadow p-4"
+          style={{ borderRadius: "10px", backgroundColor: "#ffffff" }}
+        >
+          <h1 className="mb-4">
+            <i className="bi bi-mortarboard-fill"></i> Educational Attainment
+          </h1>
           <hr className="divider" />
 
-          {/* Junior High School Section */}
-          <section className="mb-4">
-            <h5 className="text-uppercase">Junior High School</h5>
-            <div className="row">
-              <div className="col-md-3">
-                <label className="form-label">School Last Attended:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">School Address:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Type of School:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Track:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Year Graduated:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-          </section>
+          <EducationSection
+            title="Elementary"
+            sectionData={formData.elementary}
+            onInputChange={(field, value) =>
+              handleInputChange("elementary", field, value)
+            }
+          />
           <hr className="divider" />
 
-          {/* Senior High School Section */}
-          <section className="mb-4">
-            <h5 className="text-uppercase">Senior High School</h5>
-            <div className="row">
-              <div className="col-md-3">
-                <label className="form-label">School Last Attended:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">School Address:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Type of School:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Course/Program:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="col-md-3">
-                <label className="form-label">Year Graduated:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-          </section>
+          <EducationSection
+            title="Junior High School"
+            sectionData={formData.juniorHighSchool}
+            onInputChange={(field, value) =>
+              handleInputChange("juniorHighSchool", field, value)
+            }
+          />
+          <hr className="divider" />
 
-          {/* Nav Button */}
+          <EducationSection
+            title="Senior High School"
+            sectionData={formData.seniorHighSchool}
+            onInputChange={(field, value) =>
+              handleInputChange("seniorHighSchool", field, value)
+            }
+            includeStrand
+          />
+
           <div className="d-flex justify-content-between mt-4">
             <Link to="/FamilyProfile">
-              <button type="submit" className="btn btn-success mt-4">
+              <button type="button" className="btn btn-secondary">
                 Back Page
               </button>
             </Link>
-            <Link to="/UploadRequirements">
-              <button type="submit" className="btn btn-success mt-4">
-                Next Page
-              </button>
-            </Link>
+            <button type="submit" className="btn btn-success mt-4">
+              Next Page
+            </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

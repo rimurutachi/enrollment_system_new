@@ -1,0 +1,119 @@
+/* General */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Changed to black */
+    padding-bottom: 10px;
+  }
+  
+  /* Sidebar */
+  .leftMenu {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+  }
+  
+  .menuItem {
+    display: block;
+    padding: 10px 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .menuItem:hover {
+    background-color: #e9ecef; /* Slight change for better hover effect */
+    text-decoration: none;
+  }
+  
+  /* Main Card */
+  .mainCard {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Memorandum Section */
+  .memoSection {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .memoIcon {
+    font-size: 2rem;
+    color: #007f00;
+    margin-right: 15px;
+  }
+  
+  .memoDetails {
+    flex-grow: 1;
+  }
+  
+  .memoLink {
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .memoLink:hover {
+    text-decoration: underline;
+  }
+  
+  .memoUpdate {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  /* Inbox Section */
+  .inboxSection {
+    margin-top: 20px;
+  }
+  
+  .inboxTable {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  .inboxTable th {
+    background-color: #f8f9fa;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .inboxMessage {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .inboxMessage:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .leftMenu {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .mainCard {
+      width: 100%;
+    }
+  }

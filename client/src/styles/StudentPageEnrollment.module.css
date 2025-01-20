@@ -1,0 +1,87 @@
+/* General container styling */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+  }
+  
+  /* Status and Section Box styling */
+  .statusSectionBox {
+    border: 2px solid #007f00; /* Green border */
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #f7f7f7; /* Light background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+  
+  /* Centering the content for the Enrollment Details */
+  .centeredBox {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  /* Text Colors */
+  .text-success {
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .text-primary {
+    font-weight: bold;
+    color: #007f00;
+  }
+  
+  .text-muted {
+    font-size: 0.875rem;
+  }
+  
+  /* Custom styles for the Enrollment Details Box */
+  .enrollmentDetailsBox {
+    border: 2px solid #007f00; /* Green border */
+    padding: 1.5rem;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  /* Custom Button styling for Certificate of Registration */
+  .custom-btn {
+    background-color: #007f00; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    font-weight: bold; /* Bold text */
+    padding: 10px 20px; /* Padding for the button */
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-size: 1rem; /* Adjust font size */
+  }
+  
+  .custom-btn:hover {
+    background-color: #005d00; /* Darker green on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Card shadow */
+  .card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Card body styling for spacing */
+  .card-body {
+    padding: 1.5rem;
+  }

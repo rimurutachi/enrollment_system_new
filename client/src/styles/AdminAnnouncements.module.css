@@ -1,0 +1,91 @@
+/* General container styling */
+.announcementContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card styling */
+.customCard {
+  border: 1px solid #2e9c4b;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Card Header */
+.cardHeader {
+  font-size: 1.75rem;
+  color: #ffffff;
+  background-color: #2e9c4b;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: none;
+  padding: 15px;
+  border-radius: 12px 12px 0 0;
+}
+
+/* Select input styling */
+.customSelect {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.customSelect:focus {
+  border-color: #2e9c4b;
+  outline: none;
+}
+
+/* Textarea styling */
+.customTextarea {
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.customTextarea:focus {
+  border-color: #2e9c4b;
+  outline: none;
+}
+
+/* Button styling */
+.customButton {
+  background-color: #2e9c4b;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.customButton:hover {
+  background-color: #247639;
+}
+
+/* Additional styling for responsiveness */
+@media (max-width: 768px) {
+  .customCard {
+    padding: 15px;
+  }
+
+  .cardHeader {
+    font-size: 1.5rem;
+  }
+}

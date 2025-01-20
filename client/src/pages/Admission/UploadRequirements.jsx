@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ProgressHeader from "./ProgressHeader"; // Import the ProgressHeader component
-import "../styles/ProgressHeader.module.css"; // Import CSS module for ProgressHeader
+import "../../styles/ProgressHeader.module.css"; // Import CSS module for ProgressHeader
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const UploadRequirements = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({});
+  const [imagePreviews, setImagePreviews] = useState({});
+  const [currentStep, setCurrentStep] = useState(4); // Assuming you are on step 4 (Upload Requirements)
+
   useEffect(() => {
     // Scroll to the top when the component is mounted
     window.scrollTo(0, 0);
   }, []);
 
-  const [imagePreviews, setImagePreviews] = useState({});
-  const [currentStep, setCurrentStep] = useState(4); // Assuming you are on step 4 (Upload Requirements)
-
-  // Handle image change for preview
+  // Handle image change for specific key
   const handleImageChange = (e, key) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
+        // Update image previews and form data
         setImagePreviews((prev) => ({
           ...prev,
-          [key]: reader.result,
+          [key]: reader.result, // Base64 string for preview
+        }));
+        setFormData((prev) => ({
+          ...prev,
+          [key]: file, // File object for upload
         }));
       };
       reader.readAsDataURL(file);
@@ -31,6 +40,11 @@ const UploadRequirements = () => {
   // Handle deleting an image
   const handleDeleteImage = (key) => {
     setImagePreviews((prev) => {
+      const updated = { ...prev };
+      delete updated[key];
+      return updated;
+    });
+    setFormData((prev) => {
       const updated = { ...prev };
       delete updated[key];
       return updated;
@@ -89,24 +103,31 @@ const UploadRequirements = () => {
     </label>
   );
 
-  const handleSubmit = async () => {
-    try {
-      // Prepare the data to send (assuming imagePreviews contains base64 encoded images)
-      const requirementData = {
-        grade11_1st: imagePreviews.grade11_1st,
-        grade11_2nd: imagePreviews.grade11_2nd,
-        grade12_1st: imagePreviews.grade12_1st,
-        grade12_2nd: imagePreviews.grade12_2nd,
-        certificate_form_137: imagePreviews.certificate_form_137,
-      };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const uploadData = new FormData();
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) uploadData.append(key, value);
+    });
 
-      // Send the POST request
-      const response = await axios.post("/UploadRequirements", requirementData);
-      console.log("Requirements saved:", response.data);
+    try {
+      const response = await axios.post("/Requirement", uploadData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      if (response.data.error) {
+        toast.error(response.data.error);
+      } else {
+        toast.success("Requirements submitted successfully!");
+        goToNextPage();
+      }
     } catch (error) {
-      console.error("Error saving requirements:", error);
-      // Handle the error, e.g., display an error message to the user
+      toast.error("Failed to upload requirements. Please try again.");
     }
+  };
+
+  const goToNextPage = () => {
+    setCurrentStep(4);
+    navigate("/ScheduleAppointment");
   };
 
   return (
@@ -123,19 +144,19 @@ const UploadRequirements = () => {
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
       />
-      <div
-        className="card shadow p-4"
-        style={{
-          borderRadius: "10px",
-          backgroundColor: "#ffffff",
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <h1 className="mb-4">
-          <i className="bi bi-paperclip"></i> Requirements
-        </h1>
-        <hr />
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div
+          className="card shadow p-4"
+          style={{
+            borderRadius: "10px",
+            backgroundColor: "#ffffff",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <h1 className="mb-4">
+            <i className="bi bi-paperclip"></i> Requirements
+          </h1>
+          <hr />
           {/* Grade 11 Report Card */}
           <section className="mb-4">
             <h5>Grade 11 Report Card</h5>
@@ -177,18 +198,22 @@ const UploadRequirements = () => {
           {/* Navigation Buttons */}
           <div className="d-flex justify-content-between mt-4">
             <Link to="/EducationalProfile">
-              <button type="submit" className="btn btn-success mt-4">
+              <button type="submit" className="btn btn-secondary">
                 Back Page
               </button>
             </Link>
             <Link to="/ScheduleAppointment">
-              <button type="submit" className="btn btn-success mt-4">
+              <button
+                type="submit"
+                className="btn btn-success mt-4"
+                onClick={handleSubmit}
+              >
                 Next Page
               </button>
             </Link>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

@@ -1,0 +1,59 @@
+.sidebar {
+  width: 250px; /* Sidebar width */
+  background-color: #1e5128; /* Darker green color */
+  color: white;
+  height: 100vh; /* Full height */
+  padding: 20px;
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+/* Logo and Title Styles */
+.logoContainer {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Optional: circular logo */
+  margin-bottom: 10px;
+}
+
+.dashboardTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Navigation Link Styles */
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+  width: 100%; /* Full width of the sidebar */
+  transition: background-color 0.3s ease;
+  border-radius: 8px; /* Rounded corners for buttons */
+}
+
+.navLink:hover {
+  background-color: #2a6a3b; /* Slightly lighter green on hover */
+}
+
+.navLink.active {
+  background-color: #2e9c4b; /* Active link background color */
+  font-weight: bold; /* Emphasize active link */
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 20px;
+}

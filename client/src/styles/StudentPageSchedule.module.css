@@ -1,0 +1,100 @@
+/* General */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Header inside the card */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Changed to black */
+    padding-bottom: 10px;
+  }
+  
+  
+  /* Table */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table th,
+  .table td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .table th {
+    background-color: #007f00;
+    color: #ecf0f1;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .table tr:nth-child(odd) {
+    background-color: #ecf0f1;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  .table tr:hover {
+    background-color: #dcdde1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .table td {
+    border-bottom: 1px solid #bdc3c7;
+  }
+  
+  .table td:last-child,
+  .table th:last-child {
+    border-right: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .table,
+    .table thead,
+    .table tbody,
+    .table th,
+    .table td,
+    .table tr {
+      display: block;
+    }
+  
+    .table th,
+    .table td {
+      width: 100%;
+      text-align: right;
+      padding: 10px;
+      position: relative;
+    }
+  
+    .table th::before,
+    .table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 10px;
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    .table th {
+      background-color: #34495e;
+      color: white;
+    }
+  }

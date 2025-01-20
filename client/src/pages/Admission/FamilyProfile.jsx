@@ -1,281 +1,304 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ProgressHeader from "./ProgressHeader";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+
+const FormGroup = ({
+  label,
+  type = "text",
+  value = "",
+  onChange = () => {},
+  options,
+}) => {
+  return (
+    <div className="mb-3">
+      <label className="form-label">{label}</label>
+      {options ? (
+        <select
+          className="form-select"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
+          <option value="">Select:</option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <input
+          type={type}
+          className="form-control"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      )}
+    </div>
+  );
+};
+
+const Section = ({ title, fields }) => (
+  <div className="col-md-6">
+    <h5>{title}</h5>
+    {fields.map((field, index) => (
+      <FormGroup key={index} {...field} />
+    ))}
+  </div>
+);
 
 const FamilyProfile = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(2);
-  const [siblings, setSiblings] = useState([{ fullName: "", age: "" }]);
+
+  const [formData, setFormData] = useState({
+    parent1: {
+      name: "",
+      education: "",
+      occupation: "",
+      employer: "",
+      income: "",
+      contact: "",
+    },
+    parent2: {
+      name: "",
+      education: "",
+      occupation: "",
+      employer: "",
+      income: "",
+      contact: "",
+    },
+    guardian: {
+      name: "",
+      relationship: "",
+      education: "",
+      occupation: "",
+      employer: "",
+      income: "",
+      contact: "",
+    },
+    siblings: "",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleAddSibling = () => {
-    setSiblings([...siblings, { fullName: "", age: "" }]);
-  };
-
-  const handleRemoveSibling = (index) => {
-    const updatedSiblings = siblings.filter((_, i) => i !== index);
-    setSiblings(updatedSiblings);
-  };
-
-  const handleSiblingChange = (index, field, value) => {
-    const updatedSiblings = [...siblings];
-    updatedSiblings[index][field] = value;
-    setSiblings(updatedSiblings);
-  };
-
-  // Example function to save family profile data
-  const saveFamilyProfile = async (familyData) => {
-    try {
-      const response = await axios.post("/families", familyData);
-      console.log("Family profile saved:", response.familyData);
-    } catch (error) {
-      console.error("Error saving family profile:", error);
-    }
-  };
-
-  // Example function to fetch family profile data
-  const fetchFamilyProfile = async () => {
-    try {
-      const response = await axios.get("/families");
-      console.log("Family profiles:", response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching family profiles:", error);
+  const updateField = (section, field, value) => {
+    if (section === "siblings") {
+      // Handle siblings separately as it's not an object
+      setFormData((prev) => ({
+        ...prev,
+        siblings: value,
+      }));
+    } else {
+      // Handle other sections normally
+      setFormData((prev) => ({
+        ...prev,
+        [section]: {
+          ...prev[section],
+          [field]: value,
+        },
+      }));
     }
   };
 
   // Handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    // Gather all the family data from the form fields
-    const familyData = {
-      parent1Name: "",
-      parent1Relationship: "",
-      parent1Education: "",
-      parent1Occupation: "",
-      parent1Employer: "",
-      parent1Income: "",
-      parent1Contact: "",
-      parent2Name: "",
-      parent2Relationship: "",
-      parent2Education: "",
-      parent2Occupation: "",
-      parent2Employer: "",
-      parent2Income: "",
-      parent2Contact: "",
-      guardianName: "",
-      guardianRelationship: "",
-      guardianEducation: "",
-      guardianOccupation: "",
-      guardianEmployer: "",
-      guardianIncome: "",
-      guardianContact: "",
-      siblings: siblings,
-    };
-
-    // Call the saveFamilyProfile function to send the data to the backend
-    await saveFamilyProfile(familyData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/Family", formData);
+      if (data.error) {
+        toast.error("Error: " + data.error);
+      } else {
+        toast.success("Family information submitted successfully!");
+        setFormData({ parent1: {}, parent2: {}, guardian: {}, siblings: "" });
+        goToNextPage();
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Submission failed.");
+    }
   };
 
-  // Example of how to use fetchFamilyProfile (e.g., in a useEffect)
-  useEffect(() => {
-    const getFamilyData = async () => {
-      const data = await fetchFamilyProfile();
-      // Do something with the fetched data, e.g., pre-fill the form
-    };
-
-    getFamilyData();
-  }, []); // Empty dependency array means this runs once when the component mounts
+  const goToNextPage = () => {
+    setCurrentStep(2);
+    navigate("/EducationalProfile");
+  };
 
   return (
-    <div
-      className="containers"
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
-    >
+    <div className="containers" style={{ minHeight: "100vh" }}>
       <ProgressHeader
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
       />
-
-      <div
-        className="card shadow p-4"
-        style={{
-          borderRadius: "10px",
-          backgroundColor: "#ffffff",
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-          flex: 1,
-          overflowY: "auto",
-        }}
-      >
-        <h1 className="mb-4">
-          <i className="bi bi-people-fill"></i> Family Background
-        </h1>
-        <hr className="divider" />
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div className="card shadow p-4" style={{ borderRadius: "10px" }}>
+          <h1 className="mb-4">
+            <i className="bi bi-people-fill"></i> Family Background
+          </h1>
+          <hr />
           <div className="row">
-            <div className="col-md-6">
-              <h5>Parent 1</h5>
-              <div className="mb-3">
-                <label className="form-label">Name:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Relationship:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Highest Education:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Occupation:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Employer:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Monthly Income:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Contact Number:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <h5>Parent 2</h5>
-              <div className="mb-3">
-                <label className="form-label">Name:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Relationship:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Highest Education:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Occupation:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Employer:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Monthly Income:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Contact Number:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
+            <Section
+              title="Mother's Information"
+              fields={[
+                {
+                  label: "Name",
+                  value: formData.parent1.name,
+                  onChange: (val) => updateField("parent1", "name", val),
+                },
+                {
+                  label: "Educational Attainment",
+                  value: formData.parent1.education,
+                  onChange: (val) => updateField("parent1", "education", val),
+                  options: [
+                    "Elementary",
+                    "High School",
+                    "Undergraduate",
+                    "Post-Graduate",
+                  ],
+                },
+                {
+                  label: "Occupation",
+                  value: formData.parent1.occupation,
+                  onChange: (val) => updateField("parent1", "occupation", val),
+                },
+                {
+                  label: "Employer (If none, type N/A.)",
+                  value: formData.parent1.employer,
+                  onChange: (val) => updateField("parent1", "employer", val),
+                },
+                {
+                  label: "Monthly Income",
+                  value: formData.parent1.income,
+                  onChange: (val) => updateField("parent1", "income", val),
+                  type: "number",
+                },
+                {
+                  label: "Contact Number",
+                  value: formData.parent1.contact,
+                  onChange: (val) => updateField("parent1", "contact", val),
+                },
+              ]}
+            />
+            <Section
+              title="Father's Information"
+              fields={[
+                {
+                  label: "Name",
+                  value: formData.parent2.name,
+                  onChange: (val) => updateField("parent2", "name", val),
+                },
+                {
+                  label: "Educational Attainment",
+                  value: formData.parent2.education,
+                  onChange: (val) => updateField("parent2", "education", val),
+                  options: [
+                    "Elementary",
+                    "High School",
+                    "Undergraduate",
+                    "Post-Graduate",
+                  ],
+                },
+                {
+                  label: "Occupation",
+                  value: formData.parent2.occupation,
+                  onChange: (val) => updateField("parent2", "occupation", val),
+                },
+                {
+                  label: "Employer (If none, type N/A.)",
+                  value: formData.parent2.employer,
+                  onChange: (val) => updateField("parent2", "employer", val),
+                },
+                {
+                  label: "Monthly Income",
+                  value: formData.parent2.income,
+                  onChange: (val) => updateField("parent2", "income", val),
+                  type: "number",
+                },
+                {
+                  label: "Contact Number",
+                  value: formData.parent2.contact,
+                  onChange: (val) => updateField("parent2", "contact", val),
+                },
+              ]}
+            />
           </div>
-          <hr className="divider" />
-
+          <hr />
           <div className="row">
-            <div className="col-md-6">
-              <h4 className="mb-3">Guardian</h4>
-              <div className="mb-3">
-                <label className="form-label">Name:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Relationship:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Highest Education:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Occupation:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Employer:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Monthly Income:</label>
-                <input type="text" className="form-control" />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Contact Number:</label>
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <h4 className="mb-3">Siblings</h4>
-              {siblings.map((sibling, index) => (
-                <div className="d-flex align-items-center mb-3" key={index}>
-                  <span className="me-2">{index + 1}</span>
-                  <div className="me-2" style={{ flex: 1 }}>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Full Name"
-                      value={sibling.fullName}
-                      onChange={(e) =>
-                        handleSiblingChange(index, "fullName", e.target.value)
-                      }
-                    />
-                  </div>
-                  <div className="me-2" style={{ width: "100px" }}>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Age"
-                      value={sibling.age}
-                      onChange={(e) =>
-                        handleSiblingChange(index, "age", e.target.value)
-                      }
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-success me-2"
-                    onClick={handleAddSibling}
-                  >
-                    +
-                  </button>
-                  {siblings.length > 1 && (
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => handleRemoveSibling(index)}
-                    >
-                      -
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
+            <Section
+              title="Guardian Information"
+              fields={[
+                {
+                  label: "Name",
+                  value: formData.guardian.name,
+                  onChange: (val) => updateField("guardian", "name", val),
+                },
+                {
+                  label: "Relationship",
+                  value: formData.guardian.relationship,
+                  onChange: (val) =>
+                    updateField("guardian", "relationship", val),
+                },
+                {
+                  label: "Educational Attainment",
+                  value: formData.guardian.education,
+                  onChange: (val) => updateField("guardian", "education", val),
+                  options: [
+                    "Elementary",
+                    "High School",
+                    "Undergraduate",
+                    "Post-Graduate",
+                  ],
+                },
+                {
+                  label: "Occupation",
+                  value: formData.guardian.occupation,
+                  onChange: (val) => updateField("guardian", "occupation", val),
+                },
+                {
+                  label: "Employer (If none, type N/A.)",
+                  value: formData.guardian.employer,
+                  onChange: (val) => updateField("guardian", "employer", val),
+                },
+                {
+                  label: "Monthly Income",
+                  value: formData.guardian.income,
+                  onChange: (val) => updateField("guardian", "income", val),
+                  type: "number",
+                },
+                {
+                  label: "Contact Number",
+                  value: formData.guardian.contact,
+                  onChange: (val) => updateField("guardian", "contact", val),
+                },
+              ]}
+            />
+            <Section
+              title="Siblings"
+              fields={[
+                {
+                  label: "Number of Siblings",
+                  value: formData.siblings,
+                  onChange: (val) => updateField("siblings", null, val), // No field needed here
+                  type: "number", // Ensure this is numeric input
+                },
+              ]}
+            />
           </div>
-
           <div className="d-flex justify-content-between mt-4">
             <Link to="/ApplicantProfile">
-              <button className="btn btn-success mt-4">Back Page</button>
-            </Link>
-            <Link to="/EducationalProfile">
-              <button type="submit" className="btn btn-success mt-4">
-                Next Page
+              <button type="button" className="btn btn-secondary">
+                Back Page
               </button>
             </Link>
+            <button type="submit" className="btn btn-success">
+              Next Page
+            </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

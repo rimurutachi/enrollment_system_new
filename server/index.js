@@ -1,10 +1,21 @@
-const express = require('express');
-const dotenv = require('dotenv').config();
-const cors = require('cors');
+const express = require("express")
+const dotenv = require("dotenv").config()
+const { mongoose } = require("mongoose")
+const cors = require("cors")
+const app = express()
 
-const app = express();
+//Database connection
+mongoose.connect(process.env.MONGO_URL)
+.then(() => console.log("Database connected!"))
+.catch((err) => console.log("Database connection failed!", err))
 
-app.use('/', require('./routes/routes'));
+//Middlewares
+app.use(express.json())
 
-const port = 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+//Routes
+app.use('/', require('./routes/authRoutes'));
+
+
+const port = 8000;
+app.listen(port, () => console.log(`Server running on port ${port}`));

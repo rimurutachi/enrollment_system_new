@@ -1,0 +1,55 @@
+/* General container for page content */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Home header style */
+  .homeHeader {
+    font-size: 1.75rem;
+    color: #007f00; /* Green color */
+    font-weight: bold;
+  }
+  
+  /* Header styling inside the card */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00; /* Green color */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Black border */
+    padding-bottom: 10px;
+  }
+  
+  /* Profile form container styling */
+  .profileContainer {
+    max-width: 700px;
+    margin: auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem; /* Smaller font for compact look */
+  }
+  
+  /* Textarea resize handling */
+  textarea {
+    resize: none;
+  }
+  
+  /* Styling for Save button */
+  button.btn-success {
+    background-color: #007f00; /* Green color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.btn-success:hover {
+    background-color: #005d00; /* Darker green on hover */
+    cursor: pointer;
+  }

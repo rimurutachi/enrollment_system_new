@@ -1,0 +1,47 @@
+/* Global styles */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Black border below the header */
+    padding-bottom: 10px;
+  }
+  
+  /* Card Box Styling */
+  .box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Change Password Button Styling */
+  .changeButton {
+    font-weight: bold;
+    background-color: #007f00; /* Green background color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 12px 20px; /* Padding for better button size */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+  }
+  
+  .changeButton:hover {
+    background-color: #005d00; /* Darker green on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+  /* Additional styles for text and spacing */
+  .homeHeader {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }

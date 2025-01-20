@@ -1,0 +1,74 @@
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Changed to black */
+    padding-bottom: 10px;
+  }
+  
+  .tableContainer {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 12px; /* Increased padding for better readability */
+  }
+  
+  .table th {
+    background-color: #007f00;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .table td a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  
+  .table td a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Optional: Make table responsive on smaller screens */
+  @media (max-width: 768px) {
+    .table {
+      font-size: 12px; /* Smaller font on mobile */
+    }
+  
+    .table th,
+    .table td {
+      padding: 8px; /* Adjust padding on mobile */
+    }
+  }

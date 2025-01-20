@@ -1,0 +1,262 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .login-page {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Arial', sans-serif;
+    background: url('/cover.jpg') no-repeat center center / cover;
+    height: 100vh;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Left Section */
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+  }
+  
+  .title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .button {
+    width: 220px;
+    padding: 15px 0;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .faculty {
+    background-color: #007f00;
+    color: white;
+  }
+  
+  .faculty:hover {
+    background-color: #005f00;
+  }
+  
+  .student {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+  }
+  
+  .student:hover {
+    background-color: black;
+    color: white;
+  }
+  
+  .disclaimer {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .link {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  /* Right Section */
+  .right {
+    width: 55%;
+    background: rgba(255, 255, 255, 0.95); /* Slightly translucent white */
+    color: black;
+    padding: 40px 30px; /* Adjust padding for balanced spacing */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add spacing between sections */
+  }
+  
+  .section-title {
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px; /* Larger spacing below title */
+    color: #005f00; /* Match green shade */
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .section-header {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007f00; /* Dark green for headers */
+    text-transform: uppercase; /* Match style from the screenshot */
+  }
+  
+  .section p {
+    line-height: 1.8;
+    text-align: justify;
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  /* Marquee Styling */
+  .marquee {
+    margin-top: 30px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .marquee p {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    color: #005f00;
+    animation: marquee 10s linear infinite;
+  }
+
+  /* Header.jsx styling */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .university-title {
+    text-align: center;
+    color: white;
+  }
+  
+  .header-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .header-subtitle {
+    font-size: 18px;
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+  
+  /* Keyframes for marquee animation */
+  @keyframes marquee {
+    from {
+      transform: translateX(410%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Responsive Styling */
+@media (max-width: 1024px) {
+    .login-page {
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+  
+    .left,
+    .right {
+      width: 90%;
+      margin-bottom: 20px;
+    }
+  
+    .right {
+      padding: 30px 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 18px;
+    }
+  
+    .button {
+      width: 180px;
+      font-size: 16px;
+      padding: 12px 0;
+    }
+  
+    .section-title {
+      font-size: 24px;
+    }
+  
+    .section-header {
+      font-size: 18px;
+    }
+  
+    .section p {
+      font-size: 14px;
+    }
+  
+    .marquee {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .left,
+    .right {
+      width: 100%;
+      padding: 20px;
+    }
+  
+    .title {
+      font-size: 16px;
+    }
+  
+    .button {
+      width: 150px;
+      font-size: 14px;
+    }
+  
+    .section-title {
+      font-size: 20px;
+    }
+  
+    .section-header {
+      font-size: 16px;
+    }
+  
+    .section p {
+      font-size: 12px;
+    }
+  
+    .marquee {
+      font-size: 14px;
+    }
+  }

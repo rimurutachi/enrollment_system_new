@@ -1,0 +1,55 @@
+/* General */
+.container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Header */
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #007f00;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #000; /* Changed to black */
+    padding-bottom: 10px;
+  }
+  
+.container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    color: #333;
+  }
+  
+  .card-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .statusText {
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .text-success {
+    color: #007f00 !important;
+  }
+  
+  .table-success th {
+    background-color: #007f00 !important;
+    color: white;
+  }
+  
+  .table-bordered {
+    border: 1px solid #ddd;
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Reduce spacing in the row */
+  .row.g-1 > [class*="col-"] {
+    padding-left: 5px !important;
+    padding-right: 10px !important;
+  }

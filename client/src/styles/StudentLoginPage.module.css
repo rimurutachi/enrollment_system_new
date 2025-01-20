@@ -1,0 +1,235 @@
+/* General Styling for Student Page */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #f4f4f4;
+}
+
+.studentPage {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Arial', sans-serif;
+    background: url('/cover.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    background-size: cover; /* Ensures background always covers the screen */
+    background-attachment: fixed; /* Optional for a parallax effect */
+}
+
+/* Header Section */
+.left {
+    width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+}
+
+.left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+    border-radius: 15px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.left * {
+    position: relative;
+    z-index: 1;
+}
+
+.right {
+    width: 50%; /* Adjusted to be responsive */
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007f00;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.loginForm {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(240, 255, 240, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.formGroup {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007f00;
+    box-shadow: 0 0 10px rgba(0, 127, 0, 0.5);
+}
+
+.loginButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #007f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginButton:hover {
+    background-color: #005f00;
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .studentPage {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0; /* Remove padding to maximize the background effect */
+        height: 100%;
+        min-height: 100vh; /* Ensures full coverage for smaller screens */
+    }
+
+    .left,
+    .right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .left {
+        align-items: center;
+        padding: 15px;
+        width: 100%;
+        border-radius: 0; /* Remove rounded edges to blend with the background */
+    }
+
+    .left::before {
+        border-radius: 0;
+    }
+
+    .right {
+        padding: 20px;
+    }
+
+    .sectionTitle {
+        font-size: 20px;
+    }
+
+    .loginForm {
+        padding: 15px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    .loginButton {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    .right {
+         width: 100%;
+        padding: 20px;
+        margin-top: 20px; /* Add spacing below the left section */
+        border-radius: 0; /* Match full-screen layout */
+        box-shadow: none; /* Optional: reduce shadow for a flat design */
+    }
+}
+
+/* Adjust for very small screens (e.g., phones) */
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 18px;
+    }
+
+    input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .loginButton {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .left {
+        padding: 10px;
+    }
+
+    .right {
+        padding: 15px;
+    }
+
+    .loginForm {
+        max-width: 300px;
+        padding: 10px;
+    }
+}

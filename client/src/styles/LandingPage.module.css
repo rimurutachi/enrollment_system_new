@@ -1,0 +1,522 @@
+/* General body styling */
+.app {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Top green bar styling */
+.topBar {
+    background-color: #2e7d32; /* Green color */
+    padding: 8px 0;
+}
+
+.socialLinks a {
+    color: white;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.socialLinks a:hover {
+    color: #ffeb3b; /* Yellowish color on hover */
+}
+
+.btn {
+    background-color: #ffeb3b; /* Yellow button */
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #fdd835; /* Slightly darker yellow on hover */
+}
+
+/* Header background and padding */
+.header {
+    background-color: #4CAF50; /* Header background color */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.headerText {
+    font-size: 25px;
+    margin-left: 8px;
+}
+
+/* Navbar-specific customizations */
+.navbar-toggler {
+    border: none;
+    background: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.navbar-toggler-icon {
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    display: inline-block;
+    border-radius: 2px;
+}
+
+.navbar-collapse.collapse {
+    display: none;
+}
+
+.navbar-collapse.collapse.show {
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .navbar-collapse.collapse {
+        display: flex !important;
+    }
+}
+
+/* Navbar links styling */
+.navLink {
+    color: white;
+    background-color: #28a745;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navLink:hover {
+    background-color: #218838;
+    color: #f8f9fa;
+}
+
+/* Logo size */
+.logoInline {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+/* Hero section styling */
+.heroSection {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .heroOverlay {
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+  }
+  
+  .heroSection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/cvsucover.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: 0;
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .lead {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: white;
+  }
+
+/* Button group styling in hero section */
+.buttonGroup .button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+  
+/* Information cards section styling */
+.infoCards {
+    position: relative;
+    z-index: 2;
+    margin-top: -100px;
+    padding: 3rem 1rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+/* Card styling */
+.card {
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    cursor: pointer;
+  }
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card icon styling */
+.cardIcon {
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+/* Card text styling */
+.cardText {
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* Video Section Styles */
+.videoSection {
+    background-color: #f8f9fa;
+  }
+  
+  .videoPlaceholder {
+    background-color: #d6d6d6;
+    width: 100%;
+    max-width: 700px;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .videoPlaceholder i {
+    color: white;
+    opacity: 0.8;
+    font-size: 48px;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .text-muted {
+    font-size: 1rem;
+  }
+  
+  .greenBackground {
+    background-color: #008000;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    position: absolute;
+    font-size: 24px;
+    color: white;
+}
+
+.topLeft {
+    top: 10%;
+    left: 10%;
+}
+
+.topRight {
+    top: 10%;
+    right: 10%;
+}
+
+.bottomRight {
+    bottom: 10%;
+    right: 10%;
+}
+
+.placeholderImage {
+    max-width: 60%;
+    margin: auto;
+}
+
+/* Why choose us section */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Styling */
+.card i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+/* Heading */
+.card h5 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.card p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.5;
+}
+
+/* Section Container */
+.whyChooseSection {
+  padding: 60px 15px;
+}
+
+.whyChooseSection h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.whyChooseSection p {
+  color: #6c757d;
+  margin-bottom: 40px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Grid System */
+.whyChooseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.section {
+  background-color: #f9f9f9;
+  padding: 50px 0;
+}
+
+.specializationSection {
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.description {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.viewAllButton {
+  border-color: #28a745;
+  color: #28a745;
+  transition: all 0.3s ease;
+}
+
+.viewAllButton:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.majorCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.majorCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.majorTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        text-align: center;
+    }
+    .navLink {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+    }
+    .heroSection {
+        padding: 50px 10px;
+        height: auto;
+        padding: 4rem 1rem;
+    }
+    .infoCards {
+        flex-direction: column;
+        align-items: center;
+        margin-top: -50px;
+        padding: 2rem 1rem;
+    }
+    .card {
+        margin: 20px 0;
+        max-width: 90%;
+        margin-left: 17px;
+    }
+    .heading {
+        font-size: 2rem;
+      }
+    
+    .lead {
+        font-size: 1rem;
+      }
+    
+    .buttonGroup .button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem;
+      }
+
+      .videoPlaceholder {
+        max-width: 100%;
+        height: 280px; /* Adjusted height for tablets */
+      }
+    
+      .videoPlaceholder i {
+        font-size: 36px; /* Icon size adjustment for tablets */
+      }
+    
+      .statNumber {
+        font-size: 2rem; /* Scale down numbers */
+      }
+    
+      .text-muted {
+        font-size: 0.9rem; /* Adjust font size for labels */
+      }
+
+      .greenBackground {
+        padding: 20px;
+      }
+
+      .icon {
+        font-size: 18px;
+      }
+
+      .placeholderImage {
+        max-width: 80%;
+      }
+
+      .topLeft, .topRight, .bottomRight {
+        top: auto;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        position: static; /* Icons stack on smaller devices */
+        margin: 10px auto;
+        display: inline-block;
+      }
+
+      .featuresGrid {
+        grid-template-columns: 1fr;
+      }
+    
+      .imagePlaceholder {
+        height: 300px;
+      }
+
+      .whyChooseSection p {
+        text-align: center;
+      }
+    
+      .card {
+        text-align: center;
+      }
+}
+
+@media (max-width: 576px) {
+    .socialLinks a {
+        font-size: 1rem;
+    }
+    .btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+    .cardIcon {
+        font-size: 20px;
+    }
+    .cardText {
+        font-size: 1rem;
+    }
+    .heading {
+        font-size: 1.75rem;
+      }
+    
+      .lead {
+        font-size: 0.9rem;
+      }
+    
+      .buttonGroup .button {
+        font-size: 0.85rem;
+        padding: 0.4rem 1rem;
+      }
+
+      .videoSection {
+        padding: 2rem 0.5rem; /* Reduce padding on smaller devices */
+      }
+    
+      .videoPlaceholder {
+        height: 220px; /* Further reduce height for very small screens */
+      }
+    
+      .videoPlaceholder i {
+        font-size: 32px; /* Icon size adjustment for mobile */
+      }
+    
+      .statNumber {
+        font-size: 1.8rem; /* Further scale down numbers */
+      }
+    
+      .text-muted {
+        font-size: 0.85rem; /* Further adjust font size */
+      }
+}
+

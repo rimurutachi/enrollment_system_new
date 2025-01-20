@@ -1,0 +1,12 @@
+.layout {
+  display: flex;
+  height: 100vh; /* Ensure the layout takes up the full height of the viewport */
+}
+
+.mainContent {
+  margin-left: 250px; /* Same width as the sidebar */
+  padding: 20px;
+  width: calc(100% - 250px); /* Ensure the content fits beside the sidebar */
+  overflow-x: auto; /* Prevent horizontal overflow */
+  background-color: #f9f9f9; /* Optional: Give it a light background */
+}
