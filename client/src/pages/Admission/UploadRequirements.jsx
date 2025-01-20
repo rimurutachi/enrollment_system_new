@@ -111,7 +111,7 @@ const UploadRequirements = () => {
     });
 
     try {
-      const response = await axios.post("/Requirement", uploadData, {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Requirement`, uploadData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       if (response.data.error) {

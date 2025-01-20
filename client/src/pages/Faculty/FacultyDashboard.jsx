@@ -10,7 +10,7 @@ const FacultyDashboard = () => {
   // Function to fetch announcements from the backend
   const fetchAnnouncements = async () => {
     try {
-      const response = await axios.get("/Announcement", {
+      const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Announcement`, {
         params: { recipient: "Faculty" }, // Pass recipient as query parameter
       });
       return response.data;

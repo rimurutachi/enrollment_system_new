@@ -28,7 +28,7 @@ const StudentPageLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/Login", credentials);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Login`, credentials);
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         toast.success("Login successful!");

@@ -18,7 +18,7 @@ const AdminAnnouncements = () => {
     }
 
     try {
-      const response = await axios.post("/Create", {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Create`, {
         title,
         content: message,
         createdBy: "Admin", // Replace with actual admin info if needed

@@ -10,7 +10,7 @@ const StudentPageHome = () => {
   useEffect(() => {
     const loadAnnouncements = async () => {
       try {
-        const response = await axios.get("/Announcement", {
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Announcement`, {
           params: { recipient: "Students" }, // Pass recipient as query parameter
         });
         setAnnouncements(response.data || []);

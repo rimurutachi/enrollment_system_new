@@ -23,7 +23,7 @@ const AdminCreateStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/Student", student);
+      await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Student`, student);
       toast.success("Student created successfully!");
       setStudent({
         studentId: "",

@@ -100,7 +100,7 @@ const RegistrationForm = () => {
     }
 
     try {
-      const response = await axios.post("/Register", {
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Register`, {
         applicantType: formData.applicantType,
         seniorHighTrack: formData.seniorHighTrack,
         preferredProgram: formData.preferredProgram,

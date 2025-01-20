@@ -91,7 +91,7 @@ const ApplicantProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/Applicant", formData);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Applicant`, formData);
       if (response.data.error) {
         toast.error(response.data.error);
       } else {

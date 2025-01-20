@@ -108,7 +108,7 @@ const FamilyProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/Family", formData);
+      const { data } = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Family`, formData);
       if (data.error) {
         toast.error("Error: " + data.error);
       } else {

@@ -25,7 +25,7 @@ const ScheduleAppointment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/Schedule", formData);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/Schedule`, formData);
       if (response.data.error) {
         toast.error(response.data.error);
       } else {

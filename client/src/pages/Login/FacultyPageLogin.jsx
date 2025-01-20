@@ -17,7 +17,7 @@ const FacultyPageLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/FacultyLogin", credentials);
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/FacultyLogin`, credentials);
       const { token, message } = response.data;
 
       // Save the token to localStorage
