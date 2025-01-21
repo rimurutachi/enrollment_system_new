@@ -24,7 +24,8 @@ const {
 //Middleware
 router.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://enrollment-system-client.vercel.app",
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',  
     credentials: true,
   })
 );
